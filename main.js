@@ -5,19 +5,16 @@ const weatherDetails = document.querySelector('.weather-details');
 const error404 = document.querySelector('.not-found');
 
 search.addEventListener('click', () => {
-
     const APIKey = '4426dd40aa926442ae7b6b4c30d41f75';
     const city = document.querySelector('.search-box input').value;
 
-    if (city === '')
-        return;
+    if (city === '') return;
 
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
         .then(response => response.json())
         .then(json => {
-
             if (json.cod === '404') {
-                container.style.height = '400px';
+                container.style.height = '600px';
                 weatherBox.style.display = 'none';
                 weatherDetails.style.display = 'none';
                 error404.style.display = 'block';
@@ -38,23 +35,18 @@ search.addEventListener('click', () => {
                 case 'Clear':
                     image.src = 'img/clear.png';
                     break;
-
                 case 'Rain':
                     image.src = 'img/rain.png';
                     break;
-
                 case 'Snow':
                     image.src = 'img/snow.png';
                     break;
-
                 case 'Clouds':
                     image.src = 'img/cloud.png';
                     break;
-
                 case 'Haze':
                     image.src = 'img/mist.png';
                     break;
-
                 default:
                     image.src = '';
             }
@@ -64,14 +56,10 @@ search.addEventListener('click', () => {
             humidity.innerHTML = `${json.main.humidity}%`;
             wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
 
-            weatherBox.style.display = '50px';
-            weatherDetails.style.display = '50px';
+            weatherBox.style.display = 'block';
+            weatherDetails.style.display = 'block';
             weatherBox.classList.add('fadeIn');
             weatherDetails.classList.add('fadeIn');
             container.style.height = '590px';
-
-
         });
-
-
 });
